@@ -2,7 +2,7 @@ const mineflayer = require('mineflayer')
 
 const bot = mineflayer.createBot({
   host: 'SoulSMP-mmaB.aternos.me',
-  port: '38381,
+  port: 38381,
   username: 'AFKBot123'
 })
 
