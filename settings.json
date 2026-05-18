@@ -28,4 +28,34 @@ bot.on('end', () => {
   }, 5000)
 })
 
+bot.on('error', err => console.log(err))const mineflayer = require('mineflayer')
+
+const bot = mineflayer.createBot({
+  host: 'SoulSMP-mmaB.aternos.me',
+  port: 38381,
+  username: 'AFKBot123'
+})
+
+bot.on('spawn', () => {
+  console.log('AFK Bot Joined!')
+
+  // Move slightly every 30 seconds
+  setInterval(() => {
+    bot.setControlState('jump', true)
+
+    setTimeout(() => {
+      bot.setControlState('jump', false)
+    }, 1000)
+
+  }, 30000)
+})
+
+bot.on('end', () => {
+  console.log('Disconnected. Reconnecting...')
+  
+  setTimeout(() => {
+    process.exit()
+  }, 5000)
+})
+
 bot.on('error', err => console.log(err))
