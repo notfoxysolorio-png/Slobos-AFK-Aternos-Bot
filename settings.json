@@ -1,87 +1,31 @@
-{
-  "name": "AFK Bot",
-  "bot-account": {
-    "username": "Slobot00",
-    "password": "",
-    "type": "onnline"
-  },
-  "server": {
-    "ip": "SoulSMP-mmaB.aternos.me",
-    "port": 38381,
-    "version": "",
-    "try-creative": false
-  },
-  "position": {
-    "enabled": true,
-    "x": 0,
-    "y": 100,
-    "z": 0
-  },
-  "utils": {
-    "auto-auth": {
-      "enabled": true,
-      "password": "chalol78"
-    },
-    "anti-afk": {
-      "enabled": true,
-      "sneak": true
-    },
-    "chat-messages": {
-      "enabled": true,
-      "repeat": true,
-      "repeat-delay": 120,
-      "messages": [
-        "I'm a regular player",
-        "Subscribe to Slobos!",
-        "I like to play Minecraft!"
-      ]
-    },
-    "chat-log": true,
-    "auto-reconnect": true,
-    "auto-reconnect-delay": 2000,
-    "max-reconnect-delay": 120000
-  },
-  "movement": {
-    "enabled": true,
-    "circle-walk": {
-      "enabled": true,
-      "radius": 4,
-      "speed": 3000
-    },
-    "look-around": {
-      "enabled": true,
-      "interval": 5000
-    },
-    "random-jump": {
-      "enabled": true,
-      "interval": 10000
-    }
-  },
-  "modules": {
-    "avoidMobs": true,
-    "combat": true,
-    "beds": false,
-    "chat": true,
-    "console-commands": true
-  },
-  "combat": {
-    "attack-mobs": true,
-    "auto-eat": true
-  },
-  "beds": {
-    "pick-up-day": false,
-    "place-night": false
-  },
-  "discord": {
-    "enabled": false,
-    "webhookUrl": "YOUR_DISCORD_WEBHOOK_URL_HERE",
-    "events": {
-      "connect": true,
-      "disconnect": true,
-      "chat": false
-    }
-  },
-  "chat": {
-    "respond": true
-  }
-}
+const mineflayer = require('mineflayer')
+
+const bot = mineflayer.createBot({
+  host: 'SoulSMP-mmaB.aternos.me',
+  port: '38381,
+  username: 'AFKBot123'
+})
+
+bot.on('spawn', () => {
+  console.log('AFK Bot Joined!')
+
+  // Move slightly every 30 seconds
+  setInterval(() => {
+    bot.setControlState('jump', true)
+
+    setTimeout(() => {
+      bot.setControlState('jump', false)
+    }, 1000)
+
+  }, 30000)
+})
+
+bot.on('end', () => {
+  console.log('Disconnected. Reconnecting...')
+  
+  setTimeout(() => {
+    process.exit()
+  }, 5000)
+})
+
+bot.on('error', err => console.log(err))
