@@ -2,7 +2,7 @@
   "bot-account": {
     "username": "Slobot00",
     "password": "",
-    "type": "offline"
+    "type": "online"
   },
   "server": {
     "ip": "SoulSMP-mmaB.aternos.me",
